@@ -12,7 +12,7 @@ for i in range(len(a)):
     if (int(a[i][0])==0):
         continue
     for j in range(len(a[i])//2):
-        if a[i][j] != a[i][len(a[i])-(j+1)] or int(a[i][0])==0:
+        if a[i][j] != a[i][len(a[i])-(j+1)]:
             no+=1
 
     if no ==0:
