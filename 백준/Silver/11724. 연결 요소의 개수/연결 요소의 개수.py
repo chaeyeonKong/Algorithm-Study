@@ -1,26 +1,26 @@
 import sys
+sys.setrecursionlimit(10**6)  # 재귀 제한 늘림
+n,m = map(int, sys.stdin.readline().split())
 
-n, m = map(int, sys.stdin.readline().split())
-up = [i for i in range(n + 1)]
+arr=[[]for _ in range(n+1)]
+visited=[False]*(n+1)
+count=0
 
-def find(a):
-    if a == up[a]:
-        return a
-    return find(up[a])
-
-def union(a, b):
-    a = find(a)
-    b = find(b)
-    if a > b:
-        up[a] = b
-    else:
-        up[b] = a
+def dfs(node):
+    visited[node] = True
+    for next in arr[node]:
+        if not visited[next]:
+            dfs(next)
 
 for i in range(m):
-    a, b = map(int, sys.stdin.readline().split())
-    union(a, b)
+    u, v = map(int, sys.stdin.readline().split())
+    arr[u].append(v)
+    arr[v].append(u)
 
-for i in range(1, n + 1):
-    up[i] = find(i)
+for node in range(1,n+1):
 
-print(len(set(up[1:])))
+    if not visited[node]:
+        dfs(node)
+        count+=1
+
+print(count)
