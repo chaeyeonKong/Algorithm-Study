@@ -1,19 +1,19 @@
 import sys
-input = sys.stdin.readline
-result=""
-N1 = int(input())
-data = list(map(int,input().split()))
-dic_data = dict.fromkeys(data,0)
-for i in range(len(data)):
-    dic_data[data[i]] +=1
+n = int(sys.stdin.readline().strip())
+n_li = list(map(int,sys.stdin.readline().split()))
+m = int(sys.stdin.readline().strip())
+m_li = list(map(int,sys.stdin.readline().split()))
 
-N2 = int(input())
-find = list(map(int,input().split()))
+dic = dict()
 
-for i in range(N2):
-    re = str(dic_data.get(find[i]))
-    if re == "None": re = str(0)
+for i in n_li:
+    if i in dic:
+        dic[i]+=1
+    else:
+        dic[i] = 1
 
-    result += re + " "
-print(result)
-
+for i in range(m):
+    if m_li[i] in dic:
+        print(dic[m_li[i]],end=' ')
+    else:
+        print(0, end = ' ')
