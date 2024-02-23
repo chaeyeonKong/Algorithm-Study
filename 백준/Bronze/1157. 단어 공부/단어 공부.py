@@ -1,16 +1,20 @@
-A = list(input().upper())
-word = dict.fromkeys(A,0)
+import sys
+txt = list(sys.stdin.readline().split())
 
-for i in range(len(A)): word[A[i]]+=1
+dic = dict()
 
-w_sort = sorted(word.values(),reverse=True)
+for i in range(len(txt[0])):
+    target = txt[0][i].upper()
+    if dic.get(target):
+        dic[target]+=1
+    else:
+        dic[target] = 1
 
-if(len(A)==1):
-    print(A[0])
-elif(w_sort[0]==w_sort[1]):
-    print("?")
+dic = sorted(dic.items(), key=lambda item:item[1],reverse=True)
+if len(dic)>1:
+    if dic[0][1] == dic[1][1]:
+        print('?')
+    else:
+        print(dic[0][0])
 else:
-    result =[k for k, v in word.items() if v == w_sort[0]][0]
-    print(result)
-
-
+    print(dic[0][0])
