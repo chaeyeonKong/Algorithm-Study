@@ -1,5 +1,4 @@
 import sys
-from collections import deque
 
 n = int(sys.stdin.readline().strip())
 txt = []
@@ -28,7 +27,6 @@ for tc in range(2):
         for j in range(1, n+1):
             if visited[i][j] == 0:  # 방문하지 않은 노드만 처리
                 stack.append([i, j])
-                temp = arr[i][j]
                 check = 0
                 while stack:
                     si, sj = stack.pop()
