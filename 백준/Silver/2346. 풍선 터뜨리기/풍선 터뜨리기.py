@@ -1,5 +1,4 @@
 import sys
-from collections import deque
 
 n = int(sys.stdin.readline().strip())
 arr = list(map(int, sys.stdin.readline().split()))
@@ -39,3 +38,7 @@ while(True):
             break
 
 print(*ret)
+
+# 배열 끝과 끝의 마무리를 잘 지어줘야 함.
+# -1 -2 이런식은 괜찮지만 -12 -13 이런건 존재하지 않기 때문에
+# 범위를 벗어났을 때 배열의 시작과 끝을 다시 지정해줘야 할 필요가 있음
