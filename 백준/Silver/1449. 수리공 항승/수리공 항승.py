@@ -1,6 +1,6 @@
 import sys
 n, l = map(int, sys.stdin.readline().split())
-l-=1
+l-=1 # (좌우 0.5씩 추가해줘야 하기 때문에)
 
 arr = list( map(int, sys.stdin.readline().split()))
 arr = sorted(arr)
