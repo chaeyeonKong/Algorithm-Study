@@ -34,4 +34,4 @@ if stack:
         ans += stack.pop()
 
 
-print(ans.lstrip())
+print(ans)
