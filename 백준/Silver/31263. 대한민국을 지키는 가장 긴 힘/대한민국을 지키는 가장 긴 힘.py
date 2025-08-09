@@ -16,19 +16,16 @@ while(q):
         ret+=q.popleft()
 
     idx = 2
+    cnt += 1
     if int(ret)>641:
         q.appendleft(ret[idx])
         idx-=1
-    else:
-        cnt += 1
-        if q:
-            while(True):
-                if q[0]=='0':
-                    q.appendleft(ret[idx])
-                    idx-=1
-                else:
-                    break
-
-
+    if q:
+        while(True):
+            if q[0]=='0':
+                q.appendleft(ret[idx])
+                idx-=1
+            else:
+                break
 
 print(cnt)
