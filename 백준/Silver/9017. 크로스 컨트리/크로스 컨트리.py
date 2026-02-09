@@ -1,43 +1,52 @@
 import sys
-input = sys.stdin.readline
+n = int(sys.stdin.readline().strip())
+for i in range(n):
+    k = int(sys.stdin.readline().strip())
+    arr = list(map(int, sys.stdin.readline().split()))
+    kk = len(set(arr))
+    ans = {}
 
-T = int(input().strip())
+    dict= {} # 개수 세기
+    li = [] # 포함 리스트
+    for el in arr: # 개수 세기
+        if el not in dict:
+            dict[el]= 1
+        else:
+            dict[el]+=1
 
-for _ in range(T):
-    k = int(input().strip())
-    arr = list(map(int, input().split()))
-
-    cnt = {}
-    for el in arr:
-        cnt[el] = cnt.get(el, 0) + 1
-
-    li = []
-    for el in cnt:
-        if cnt[el] == 6:
+    for el in dict: #6개인거만 li에 넣기
+        if dict[el] ==6:
             li.append(el)
 
-    ans = {} 
+    ret = {}
     idx = 1
+
     for j in range(k):
         if arr[j] in li:
             if arr[j] not in ans:
                 ans[arr[j]] = []
             ans[arr[j]].append(idx)
-            idx += 1
+            idx+=1
 
     minn = 10**9
-    cand = []
-
-    for team in ans: 
-        s = sum(ans[team][:4])
+    minidx = -1
+    la = []
+    # print(ans)
+    for team in ans:
+        s = sum(ans[team][:4]) # 상위 4명의 점수만 합해야지.....
         if s < minn:
             minn = s
-            cand = [team]
+            minidx = team
+            la = [team]
         elif s == minn:
-            cand.append(team)
+            la.append(team)
 
-    if len(cand) == 1:
-        print(cand[0])
+    if len(la)==1:
+        print(minidx)
     else:
-        cand.sort(key=lambda x: ans[x][4])
-        print(cand[0])
+        real = []
+        for j in la:
+            real.append((j, ans[j][4]))
+        # print(real)
+        real.sort(key = lambda x:x[1])
+        print(real[0][0])
