@@ -1,5 +1,5 @@
 def solution(m, musicinfos):
-    answer = ''
+    answer = '(None)'
 
     ans = []
     for i in range(len(musicinfos)):
@@ -44,9 +44,7 @@ def solution(m, musicinfos):
             
         
     ans.sort(key=lambda x: -x[1])
-    if ans==[]:
-        answer = '(None)'
-    else:
+    if ans:
         answer = ans[0][0]
     print(ans)
     
