@@ -1,32 +1,28 @@
 from collections import deque
+
 def solution(maps):
-    
-    q = deque([[0,0]])
-    
+    check = False
     n = len(maps)
     m = len(maps[0])
     
-    visited=[[False] * m for _ in range(n)]
-    arr = [[0] * m for _ in range(n)]
-    visited[0][0]=[True]
-    
-    cnt = 0
-    
-    move=[[0,-1],[0,1],[1,0],[-1,0]]
+    move=[[0,-1],[0,1],[1,0],[-1,0]] #좌우상하
+    visited=[[False]*m for _ in range(n)]
+    q = deque([[0,0]])
     
     while(q):
-        cnt+=1
-        i, j = q.popleft()
-        for x, y in move:
-            x += i
-            y += j
-            if 0<=x<n and 0<=y<m: #범위 안에서
-                if visited[x][y] == False: #방문하지 않았다면
-                    if maps[x][y]==1: # 갈 수 있다면
-                        arr[x][y] = arr[i][j]+1
-                        visited[x][y] = True
-                        q.append([x,y])
-    if arr[n-1][m-1]==0:
-        return -1
+        x, y = q.popleft()
+        if x == n-1 and y == m-1:
+            check = True
+        visited[x][y]=True
+        for i in range(4):
+            idx = x+move[i][0]
+            idy = y+move[i][1]
+            if 0 <= idx < n and 0 <= idy<m:
+                if visited[idx][idy] == False and maps[idx][idy]==1:
+                    maps[idx][idy] = maps[x][y]+1
+                    q.append([idx,idy])
+            
+    if check:
+        return maps[n-1][m-1]
     else:
-        return arr[n-1][m-1]+1
+        return -1
