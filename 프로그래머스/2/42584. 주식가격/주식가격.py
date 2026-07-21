@@ -1,14 +1,30 @@
 def solution(prices):
     
-    arr = [0 for _ in range(len(prices))]
+    arr = [0] * len(prices)
+    s=[]
     
+#     for i:
+#         while 스택맨위가격 > 현재가격:
+#             idx = pop
+#             arr[idx] = i - idx
+
+#         push(i)
+
+#     while s:
+#         idx = s.pop()
+#         arr[idx] = 마지막인덱스 - idx
+        
     for i in range(len(prices)):
-        for j in range(i+1, len(prices)):
-            if prices[i] <= prices[j]:
-                arr[i]+=1
-            else:
-                if i != len(prices)-1:
-                    arr[i]+=1
-                break
+        cnt=0
+        while s and prices[s[-1]] > prices[i]:
+            idx = s.pop()
+            arr[idx] = i - idx 
+        
+        s.append(i)
+
+    while s:
+        idx = s.pop()
+        arr[idx] = len(prices)-(idx+1)
+        
 
     return arr
