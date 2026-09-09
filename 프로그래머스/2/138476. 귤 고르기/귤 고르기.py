@@ -1,30 +1,30 @@
-
-def solution(k, tangerine):
+def solution(k, arr):
+    
     
     dict = {}
-    n = len(tangerine)
-    for i in range(n):
-        if tangerine[i] in dict:
-            dict[tangerine[i]] +=1
+    
+    for el in arr:
+        if el in dict:
+            dict[el] += 1
         else:
-            dict[tangerine[i]]=1
+            dict[el] = 1
         
-    b = sorted(dict.items(), key=lambda x:x[1])
+    li = []
+    for el, em in dict.items():
+        li.append((el,em))
+    li = sorted(li, key=lambda x:-x[1])
     
-    for i in range(len(b)):
-        if n==k:
-            break
-        for j in range(b[i][1]):
-            if n==k:
-                break
-            dict[b[i][0]]-=1
-            n-=1
-            
     cnt = 0
-    for i in range(len(b)):
-        if dict[b[i][0]]!=0:
-            cnt+=1
-    
-    print(cnt)
-    
+    for i in range(len(li)):
+        cnt+=1
+        k-=li[i][1]
+        if k<=0:
+            return cnt
+        
     return cnt
+    # dict = sorted(dict, key=lambda x:x)
+    # sorted(student_tuples, key=lambda student: student[2])   # sort by age
+
+    
+    
+            
